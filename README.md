@@ -63,7 +63,7 @@ dropped both client- and server-side. For heavier abuse, add Cloudflare Turnstil
 
 Things to do while i have time.
 
-1. In the application part, add a realmeye verification step. With code in Description.
+1. In the application part, add a realmeye verification step. With code in Description. ( Check with puppy, they might be making theirown mrrealmeye)
 
 2. Update the text on the site with Bubs new flavor text.
 
