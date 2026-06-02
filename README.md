@@ -67,4 +67,4 @@ Things to do while i have time.
 
 2. Update the text on the site with Bubs new flavor text.
 
-3. Review and question the some of the site style designs.
+3. Review and question the some of the site style designs. Like "Your tagline here"
