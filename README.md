@@ -58,3 +58,13 @@ const CONFIG = {
 ## Spam protection
 A hidden honeypot field is included; submissions that fill it are silently
 dropped both client- and server-side. For heavier abuse, add Cloudflare Turnstile.
+
+
+
+Things to do while i have time.
+
+1. In the application part, add a realmeye verification step. With code in Description.
+
+2. Update the text on the site with Bubs new flavor text.
+
+3. Review and question the some of the site style designs.
