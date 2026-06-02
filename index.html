@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>your guild</title>
+<title>Fmy</title>
 <meta name="theme-color" content="#fcbdf4" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -245,7 +245,7 @@
         <h2>FAQ</h2>
         <p class="hint">Edit these freely — each one is a <code>&lt;details&gt;</code> block.</p>
 
-        <details open><summary>What is GUILD?</summary><div class="ans">A [game] guild focused on [your focus]. We've been around since [year] and run [events/activities].</div></details>
+        <details open><summary>What is Fmy?</summary><div class="ans">A [game] guild focused on [your focus]. We've been around since [year] and run [events/activities].</div></details>
         <details><summary>What are the requirements to join?</summary><div class="ans">[e.g. a certain level/rank, a mic for events, basic activity.] Be honest on your application — it gets read.</div></details>
         <details><summary>How does the application process work?</summary><div class="ans">Fill out the Apply tab. It posts into our Discord and the guild votes Accept / Reject over 48 hours. If you're in, an officer reaches out.</div></details>
         <details><summary>How active do I need to be?</summary><div class="ans">[Set your expectation — e.g. "log in a few times a week" or "no hard requirement, just don't go dark for a month."]</div></details>
@@ -378,12 +378,13 @@
    ============================================================ */
 const CONFIG = {
   ENDPOINT: "/api/apply",
-  GUILD:    "GUILD",
+  GUILD:    "Fmy",
   DISCORD:  "https://discord.gg/your-invite"
 };
 
 // apply config everywhere it shows
-["brand","homeBanner","footBrand"].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=CONFIG.GUILD; });
+["brand","footBrand"].forEach(id=>{ const el=document.getElementById(id); if(el) el.textContent=CONFIG.GUILD; });
+document.getElementById("homeBanner").textContent = "Family";
 ["discordNav","discordHome","discordFoot","joinLink"].forEach(id=>{ const el=document.getElementById(id); if(el) el.href=CONFIG.DISCORD; });
 document.title = CONFIG.GUILD;
 
