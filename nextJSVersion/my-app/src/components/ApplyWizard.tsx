@@ -34,11 +34,10 @@ const STEPS: Step[] = [
   {
     render: () => (
       <>
-        <div className="kicker">&gt; handshake</div>
+        <div className="kicker">Thank you for choosing Family</div>
         <h2>Apply to join.</h2>
         <p className="hint">
-          Takes about two minutes. Answer honestly — your application gets read
-          and voted on by the guild.
+          Your application gets read and voted on by the guild
         </p>
       </>
     ),
@@ -49,7 +48,7 @@ const STEPS: Step[] = [
       <>
         <div className="kicker">&gt; identity</div>
         <h2>What&apos;s your in-game name?</h2>
-        <p className="hint">Exactly as it appears in-game.</p>
+        <p className="hint">Capital Sensitive</p>
         <input
           type="text"
           placeholder="IGN"
@@ -68,8 +67,8 @@ const STEPS: Step[] = [
         <div className="kicker">&gt; contact</div>
         <h2>Your Discord.</h2>
         <p className="hint">
-          We need your <b>username</b> (not display name) and your User ID —
-          right-click your profile → Copy User ID (enable Developer Mode in
+          We need your username (not display name) and your User ID.
+          Right-click your profile, then copy User ID (enable Developer Mode in
           Settings if you don&apos;t see it).
         </p>
         <input
@@ -98,7 +97,7 @@ const STEPS: Step[] = [
         <div className="kicker">&gt; profile</div>
         <h2>Describe yourself as a person.</h2>
         <p className="hint">
-          No wrong answers — we just want to know who we&apos;d be playing with.
+          Feel free to include hobbies and other games you play, along with anything else that makes you interesting
         </p>
         <textarea
           placeholder="..."
@@ -116,7 +115,7 @@ const STEPS: Step[] = [
       <>
         <div className="kicker">&gt; pitch</div>
         <h2>Why would you be a great addition?</h2>
-        <p className="hint">Sell yourself a little.</p>
+        <p className="hint">We want to know how you'll benefit the guild (Think alive fame, popularity, utility, etc)</p>
         <textarea
           placeholder="..."
           maxLength={900}
@@ -131,9 +130,9 @@ const STEPS: Step[] = [
     fields: [{ name: "hacked" }],
     render: ({ data, set, err }) => (
       <>
-        <div className="kicker">&gt; integrity</div>
-        <h2>Do you use any hacked clients?</h2>
-        <p className="hint">Be straight with us.</p>
+        <div className="kicker">&gt; Clients</div>
+        <h2>Do you use any clients?</h2>
+        <p className="hint">We need to know because the requirements change based on this response</p>
         <select value={data.hacked} onChange={(e) => set("hacked", e.target.value)}>
           <option value="" disabled>
             select an answer…
@@ -153,7 +152,7 @@ const STEPS: Step[] = [
         <div className="kicker">&gt; activity</div>
         <h2>How often do you play?</h2>
         <p className="hint">
-          Roughly — daily, weekends, &quot;when the boys are on,&quot; whatever.
+          Rough estimate
         </p>
         <input
           type="text"
@@ -301,7 +300,7 @@ export function ApplyWizard({ active }: { active: boolean }) {
             <button type="button" className="btn btn-primary" onClick={next}>
               {idx === 0 ? (
                 <>
-                  Begin <span className="blink" />
+                  Begin
                 </>
               ) : idx === STEPS.length - 1 ? (
                 "Review"
@@ -315,7 +314,7 @@ export function ApplyWizard({ active }: { active: boolean }) {
         {idx === SUBMIT_IDX && (
           <>
             <div className="kicker">&gt; confirm</div>
-            <h2>Look good?</h2>
+            <h2>Application form</h2>
             <p className="hint">Double-check, then send it to the guild.</p>
             <div className="review">
               {Object.keys(LABELS).map((k) => (

@@ -1,19 +1,30 @@
 import type { Metadata, Viewport } from "next";
-import { JetBrains_Mono, VT323 } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Great_Vibes, JetBrains_Mono } from "next/font/google";
 import { CONFIG } from "@/config";
 import "./globals.css";
 
-// Loaded via next/font — self-hosted, no layout shift, no external <link>.
-// Exposed as CSS variables that globals.css references.
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-title",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-script",
+});
+
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   variable: "--font-mono",
-});
-const vt323 = VT323({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -21,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#fcbdf4",
+  themeColor: "#0a0000",
 };
 
 export default function RootLayout({
@@ -30,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${vt323.variable}`}>
+    <html lang="en" className={`${cinzel.variable} ${cormorant.variable} ${greatVibes.variable} ${jetbrainsMono.variable}`}>
       <body>{children}</body>
     </html>
   );

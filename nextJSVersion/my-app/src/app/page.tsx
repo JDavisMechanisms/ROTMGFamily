@@ -6,7 +6,6 @@ import { ApplyWizard } from "@/components/ApplyWizard";
 import { Gallery } from "@/components/Gallery";
 import { DiscordButton } from "@/components/DiscordButton";
 import { TabButton } from "@/components/TabButton";
-import { FeatureCard } from "@/components/FeatureCard";
 import { FaqItem } from "@/components/FaqItem";
 
 type Tab = "home" | "faq" | "apply" | "gallery";
@@ -16,40 +15,31 @@ const TABS: { id: Tab; label: string }[] = [
   { id: "apply", label: "Apply" },
   { id: "gallery", label: "Gallery" },
 ];
-
-// Home feature cards — edit / add / remove freely.
-const HOME_FEATURES = [
-  { ic: "#", title: "Active & organized", body: "Regular runs, events, and people actually online when you log in." },
-  { ic: ">", title: "No-drama crew", body: "We keep it friendly. Skill matters, but so does not being a pain." },
-  { ic: "*", title: "Voted in", body: "Applications are read and voted on by the guild — everyone has a say." },
-];
-
-// FAQ entries — each becomes one accordion. `open` expands it by default.
 const FAQS: { q: React.ReactNode; a: React.ReactNode; open?: boolean }[] = [
   {
-    q: <>What is {CONFIG.GUILD}?</>,
-    a: <>A [game] guild focused on [your focus]. We&apos;ve been around since [year] and run [events/activities].</>,
+    q: <>What is fmy?</>,
+    a: <>fmy is the official Family guild. Our focus is to create a comfortable envoirnment for people to play in. In fmy, a higher rank means more responsibility, and not more privilege. The guild is separate from the Family Party, so you don't need to be in the guild to join the party.</>,
     open: true,
   },
   {
     q: "What are the requirements to join?",
-    a: <>[e.g. a certain level/rank, a mic for events, basic activity.] Be honest on your application — it gets read.</>,
+    a: <>While there are no official requirements for joining the guild, there is a rulebook that must be followed if you want to stay in the guild after joining.</>,
   },
   {
     q: "How does the application process work?",
-    a: <>Fill out the Apply tab. It posts into our Discord and the guild votes Accept / Reject over 48 hours. If you&apos;re in, an officer reaches out.</>,
+    a: <>Fill out the application form in the Apply tab, then wait until you're aproved or rejected based on votes from the guild members. Make sure you're in the Family discord server so that we can contact you.</>,
   },
   {
-    q: "How active do I need to be?",
-    a: <>[Set your expectation — e.g. &quot;log in a few times a week&quot; or &quot;no hard requirement, just don&apos;t go dark for a month.&quot;]</>,
+    q: "Is there a fame requirement?",
+    a: <>No, everyone is free to join regardless of fame, status, star levels and so on.</>,
   },
   {
     q: "Do you allow hacked clients?",
-    a: "No. We ask on the application and we take it seriously.",
+    a: "While fmy is not against the usage of hacked clients, some exceptions like bot accounts are not allowed. This question is answered in more detail in the rulebook.",
   },
   {
-    q: "I applied — what now?",
-    a: <>Hang tight while the guild votes. Join the Discord in the meantime so we can reach you and you can say hi.</>,
+    q: "I applied, what now?",
+    a: <>Join the Discord and wait while the guild votes. If accepted, you will be reached out to. The longest it can take is 24 hours.</>,
   },
 ];
 
@@ -59,8 +49,6 @@ function tabFromHash(hash: string): Tab {
 }
 
 export default function Page() {
-  // Server always renders "home" (the hash is never sent to the server), so we
-  // start there to keep hydration consistent, then sync to the URL hash on mount.
   const [tab, setTab] = useState<Tab>("home");
   const shellRef = useRef<HTMLElement>(null);
 
@@ -71,7 +59,6 @@ export default function Page() {
     if (scroll) shellRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, []);
 
-  // deep-link support + back/forward: sync the tab to the URL hash.
   useEffect(() => {
     const sync = () => setTab(tabFromHash(window.location.hash));
     sync();
@@ -81,48 +68,49 @@ export default function Page() {
 
   return (
     <main className="shell" ref={shellRef}>
-      <div className="bar">
-        <span className="dot r" />
-        <span className="dot y" />
-        <span className="dot g" />
-        <span className="path">~/fmy</span>
-      </div>
+      <header className="masthead">
+  <div className="masthead-empty" />
 
-      <nav>
-        <span className="nav-brand">{CONFIG.GUILD}</span>
-        {TABS.map((t) => (
-          <TabButton key={t.id} label={t.label} active={tab === t.id} onClick={() => goTo(t.id)} />
-        ))}
-        <span className="nav-spacer" />
-        <DiscordButton />
-      </nav>
-
+  <nav>
+    {TABS.map((t) => (
+      <TabButton key={t.id} label={t.label} active={tab === t.id} onClick={() => goTo(t.id)} />
+    ))}
+    <span className="nav-spacer" />
+    <DiscordButton />
+  </nav>
+</header>
       <div className="body">
         {tab === "home" && (
-          <section className="rise">
-            <div className="banner">{CONFIG.BANNER}</div>
-            <div className="tag">
-              join guild name fmy <b>{"// since 2026"}</b>
-            </div>
-            <p className="lead">
-              Welcome, My name is OBD! I was wondering if i could see pictures of your feet.
-            </p>
+          <section className="rise home-page">
+            <div className="hero">
+              <div className="hero-copy">
+                <div className="eyebrow">Welcome to the</div>
+                <div className="hero-script-logo">Family</div>
+                <p className="lead">
+                  For the People, By the People
+                </p>
+                <div className="cta-row hero-actions">
+                  <button className="btn btn-primary hero-apply" onClick={() => goTo("apply")}>
+    Apply now
+  </button>
+                                </div>
+              </div>
 
-            <div className="cards">
-              {HOME_FEATURES.map((f) => (
-                <FeatureCard key={f.title} ic={f.ic} title={f.title} body={f.body} />
-              ))}
+              <aside className="hero-panel" aria-label="Guild status">
+                <div className="panel-label">We are not a raiding discord server</div>
+                <div className="panel-title">We are a Family</div>
+                <p>Unlike raiding servers, our parties are always open to everyone, including people who are not in the server</p>
+              </aside>
             </div>
-
-           
           </section>
         )}
 
         {tab === "faq" && (
-          <section className="rise">
-            <div className="kicker">&gt; frequently asked</div>
-            <h2>FAQ</h2>
-            <p className="hint">Edit these freely — each one is a details block.</p>
+          <section className="rise page-panel">
+            <div className="section-heading">
+              <div className="kicker">Questions before entry</div>
+              <h2>FAQ</h2>
+            </div>
             {FAQS.map((f, i) => (
               <FaqItem key={i} q={f.q} a={f.a} open={f.open} />
             ))}
@@ -130,18 +118,17 @@ export default function Page() {
         )}
 
         {tab === "apply" && (
-          <section className="rise">
+          <section className="rise page-panel apply-panel">
             <ApplyWizard active={tab === "apply"} />
           </section>
         )}
 
         {tab === "gallery" && (
-          <section className="rise">
+          <section className="rise page-panel gallery-panel">
             <Gallery active={tab === "gallery"} />
           </section>
         )}
       </div>
-
     </main>
   );
 }

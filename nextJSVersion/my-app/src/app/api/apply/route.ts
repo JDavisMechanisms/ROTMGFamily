@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   // 1) post the application as an embed
   const embed = {
     title: `📥 New application — ${ign}`,
-    color: 0xfcbdf4,
+    color: 0x9d1111,
     fields: [
       { name: "In-game name", value: ign, inline: true },
       {
